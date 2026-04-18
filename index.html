@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Valliambal Metal Crafts – Kumbakonam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Noto+Sans+Tamil:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink:       #E0226E;
+      --pink-light: #FF5CA8;
+      --pink-dark:  #9B0A45;
+      --gold:       #C8972A;
+      --gold-light: #E8B84B;
+      --gold-dim:   rgba(200,151,42,0.22);
+      --bg-dark:    #0D1F15;
+      --bg-mid:     #14291A;
+      --bg-card:    #0F2318;
+      --cream:      #FAF3E0;
+      --soft:       rgba(250,243,224,0.72);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg-dark);color:var(--cream);font-family:'Cormorant Garamond',serif;overflow-x:hidden;}
+
+    /* grain */
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.45;}
+    /* gold frame */
+    body::after{content:'';position:fixed;inset:8px;border:1px solid rgba(200,151,42,0.45);pointer-events:none;z-index:9998;}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1rem 4vw;background:linear-gradient(to bottom,rgba(13,31,21,0.97) 70%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid rgba(200,151,42,0.15);}
+    .nav-logo{display:flex;align-items:center;gap:.7rem;}
+    .nav-logo img{height:40px;width:40px;object-fit:contain;}
+    .nav-logo-text{display:flex;flex-direction:column;line-height:1.15;}
+    .nav-logo-text .nt{font-family:'Noto Sans Tamil',sans-serif;font-size:.95rem;font-weight:700;background:linear-gradient(135deg,#FF8EC8,#E0226E,#9B0A45);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .nav-logo-text .ne{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;}
+    .nav-links{display:flex;gap:2rem;list-style:none;}
+    .nav-links a{color:var(--cream);text-decoration:none;font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;transition:color .3s;}
+    .nav-links a:hover{color:var(--gold-light);}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+    .hamburger span{width:24px;height:1px;background:var(--gold);display:block;}
+
+    /* ── HERO ── */
+    .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;padding:9rem 2rem 5rem;background:radial-gradient(ellipse at 25% 40%,rgba(14,60,30,.55) 0%,transparent 60%),radial-gradient(ellipse at 78% 65%,rgba(200,151,42,.07) 0%,transparent 50%),var(--bg-dark);overflow:hidden;}
+    .hero-inner{position:relative;z-index:1;max-width:700px;}
+    .hero-vam{height:80px;margin:0 auto 1rem;opacity:0;animation:fu .8s .2s forwards;}
+    .hero-kumba{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:.5rem;opacity:0;animation:fu .7s .4s forwards;}
+    .hero-tamil{font-family:'Noto Sans Tamil',sans-serif;font-size:clamp(2.8rem,8vw,5rem);font-weight:700;line-height:1.1;background:linear-gradient(135deg,#FF8EC8 0%,#FF3D8B 30%,#E0226E 60%,#9B0A45 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 20px rgba(224,34,110,.4));margin-bottom:.3rem;opacity:0;animation:fu .8s .55s forwards;}
+    .hero-english{font-family:'Cinzel',serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:600;letter-spacing:.28em;color:var(--gold-light);text-shadow:0 0 20px rgba(200,151,42,.5);margin-bottom:.5rem;opacity:0;animation:fu .8s .7s forwards;}
+    .orn{display:flex;align-items:center;justify-content:center;gap:.6rem;margin:1rem auto 1.8rem;opacity:0;animation:fu .7s .85s forwards;}
+    .orn-line{flex:1;max-width:80px;height:1px;background:var(--gold);opacity:.45;}
+    .orn-c{font-size:1.1rem;color:var(--gold);opacity:.75;}
+    .hero-sub{font-size:1.18rem;font-weight:300;line-height:1.8;color:var(--soft);margin-bottom:2rem;opacity:0;animation:fu .8s 1s forwards;}
+    .hero-badges{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;opacity:0;animation:fu .7s 1.1s forwards;}
+    .badge{background:rgba(200,151,42,.1);border:1px solid rgba(200,151,42,.35);padding:.38rem 1rem;border-radius:2px;font-size:.76rem;letter-spacing:.1em;color:var(--gold-light);font-family:'Cinzel',serif;}
+    .wa-hero{display:inline-flex;align-items:center;gap:.8rem;background:linear-gradient(135deg,#25D366,#128C3E);color:#fff;font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;padding:1rem 2.2rem;border-radius:2px;box-shadow:0 4px 20px rgba(37,211,102,.3);transition:transform .2s,box-shadow .2s;opacity:0;animation:fu .7s 1.2s forwards;}
+    .wa-hero:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,.4);}
+    @keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ── SECTIONS ── */
+    section{padding:6rem 5vw;}
+    .slabel{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:.6rem;}
+    .stitle{font-family:'Cinzel',serif;font-size:clamp(1.7rem,3.5vw,2.6rem);margin-bottom:.4rem;}
+    .stitle .p{background:linear-gradient(135deg,#FF5CA8,#E0226E,#9B0A45);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .stitle .g{color:var(--gold-light);}
+    .dorn{display:flex;align-items:center;gap:.5rem;margin:1rem 0 2.5rem;}
+    .dorn span{height:1px;background:var(--gold);opacity:.35;flex:1;max-width:50px;}
+    .dorn i{color:var(--gold);font-style:normal;font-size:1rem;opacity:.65;}
+
+    /* ── ABOUT ── */
+    .about{background:linear-gradient(135deg,var(--bg-mid),var(--bg-dark));display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+    .about-text p{font-size:1.1rem;line-height:1.9;color:var(--soft);margin-bottom:1.1rem;}
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+    .sc{border:1px solid var(--gold-dim);padding:1.4rem;text-align:center;background:rgba(200,151,42,.04);transition:border-color .3s;}
+    .sc:hover{border-color:rgba(200,151,42,.5);}
+    .sn{font-family:'Cinzel',serif;font-size:2rem;display:block;margin-bottom:.25rem;background:linear-gradient(135deg,#FF5CA8,#E0226E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .sn.g{background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .sl{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,243,224,.45);}
+
+    /* ── PRODUCTS ── */
+    .products{background:var(--bg-dark);}
+    .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.5rem;margin-top:3.5rem;}
+    .pc{background:linear-gradient(145deg,var(--bg-card),#0A1A10);border:1px solid var(--gold-dim);overflow:hidden;transition:transform .3s,border-color .3s;}
+    .pc:hover{transform:translateY(-5px);border-color:rgba(200,151,42,.55);}
+    .pph{width:100%;aspect-ratio:1;background:linear-gradient(135deg,#0F2318,#1A3520,#0F2318);display:flex;align-items:center;justify-content:center;font-size:3.5rem;color:var(--gold);}
+    .pimg{width:100%;aspect-ratio:1;object-fit:cover;display:block;transition:transform .4s;}
+    .pc:hover .pimg{transform:scale(1.04);}
+    .pi{padding:1.3rem 1.5rem 1.7rem;}
+    .pn{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold-light);margin-bottom:.4rem;}
+    .pd{font-size:.97rem;line-height:1.65;color:var(--soft);margin-bottom:.9rem;}
+    .ptag{font-family:'Cinzel',serif;font-size:.63rem;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;}
+
+    /* ── REVIEWS ── */
+    .reviews{background:linear-gradient(to bottom,var(--bg-mid),var(--bg-dark));}
+    .rh{text-align:center;margin-bottom:3rem;}
+    .bigs{font-size:clamp(4rem,10vw,7rem);font-family:'Cinzel',serif;font-weight:700;background:linear-gradient(135deg,#FF8EC8,#E0226E,#9B0A45);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+    .bigs-sub{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(250,243,224,.38);margin-top:.5rem;}
+    .rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.4rem;}
+    .rc{border:1px solid var(--gold-dim);padding:1.8rem;background:rgba(200,151,42,.03);position:relative;transition:border-color .3s;}
+    .rc:hover{border-color:rgba(200,151,42,.4);}
+    .rc::before{content:'"';position:absolute;top:-.3rem;left:1.2rem;font-family:'Cinzel',serif;font-size:4.5rem;color:var(--pink);opacity:.15;line-height:1;}
+    .stars{color:var(--gold);font-size:.88rem;letter-spacing:.1em;margin-bottom:.8rem;}
+    .rt{font-size:1rem;line-height:1.75;color:var(--soft);font-style:italic;margin-bottom:1rem;}
+    .rname{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+    /* ── CONTACT ── */
+    .contact{background:var(--bg-dark);text-align:center;}
+    .cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin:3rem auto;max-width:860px;}
+    .cc{border:1px solid var(--gold-dim);padding:2.2rem 1.8rem;background:rgba(200,151,42,.04);transition:border-color .3s;}
+    .cc:hover{border-color:rgba(200,151,42,.5);}
+    .ci{font-size:1.8rem;margin-bottom:.8rem;}
+    .cc h3{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:.7rem;}
+    .cc p{font-size:1rem;color:var(--soft);line-height:1.65;}
+    .wa-btn{display:inline-flex;align-items:center;gap:.8rem;background:linear-gradient(135deg,#25D366,#128C3E);color:#fff;text-decoration:none;font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;padding:1.1rem 2.8rem;border-radius:2px;box-shadow:0 4px 24px rgba(37,211,102,.3);transition:transform .2s,box-shadow .2s;margin-top:.5rem;}
+    .wa-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(37,211,102,.4);}
+    .wa-icon{width:22px;height:22px;fill:#fff;flex-shrink:0;}
+
+    /* ── MAP ── */
+    .map-s{padding:0 5vw 5rem;background:var(--bg-dark);}
+    .mw{border:1px solid var(--gold-dim);overflow:hidden;max-width:860px;margin:0 auto;}
+    .mw iframe{width:100%;height:340px;border:none;display:block;filter:sepia(25%) brightness(.7) contrast(1.1) hue-rotate(80deg);}
+    .mc{text-align:center;margin-top:.8rem;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.12em;color:rgba(250,243,224,.3);}
+
+    /* ── FOOTER ── */
+    footer{border-top:1px solid var(--gold-dim);padding:2rem 5vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;background:var(--bg-mid);}
+    .fl{display:flex;align-items:center;gap:.8rem;}
+    .fl img{height:36px;opacity:.85;}
+    .flt{display:flex;flex-direction:column;line-height:1.2;}
+    .flt .ft{font-family:'Noto Sans Tamil',sans-serif;font-size:.9rem;font-weight:700;background:linear-gradient(135deg,#FF5CA8,#E0226E,#9B0A45);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .flt .fe{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;}
+    .fn{font-size:.8rem;color:rgba(250,243,224,.28);letter-spacing:.04em;}
+
+    /* ── REVEAL ── */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:768px){.about{grid-template-columns:1fr;gap:2.5rem;}footer{flex-direction:column;text-align:center;}}
+    @media(max-width:640px){nav{padding:.8rem 4vw;}.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(13,31,21,.98);padding:1.2rem 5vw;gap:1.2rem;border-bottom:1px solid var(--gold-dim);}.nav-links.open{display:flex;}.hamburger{display:flex;}}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="logo.png" alt="Valliambal Logo">
+    <div class="nav-logo-text">
+      <span class="nt">வள்ளி அம்பாள்</span>
+      <span class="ne">Valliambal Metal Crafts</span>
+    </div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <img src="logo.png" alt="Valliambal logo" class="hero-vam">
+    <p class="hero-kumba">Kumbakonam</p>
+    <h1 class="hero-tamil">வள்ளி அம்பாள்</h1>
+    <div class="hero-english">VALLIAMBAL</div>
+    <div class="orn"><span class="orn-line"></span><span class="orn-c">❧ ✦ ❦</span><span class="orn-line"></span></div>
+    <p class="hero-sub">Exquisite handcrafted metal idols &amp; religious artifacts<br>made with generations of artisan devotion.</p>
+    <div class="hero-badges">
+      <span class="badge">⭐ 5.0 Rating</span>
+      <span class="badge">16 Google Reviews</span>
+      <span class="badge">Custom Orders</span>
+      <span class="badge">In-store &amp; Delivery</span>
+    </div>
+    <a href="https://wa.me/917339639845?text=Hi%2C%20I%20would%20like%20to%20enquire%20about%20products%20at%20Valliambal%20Metal%20Crafts." class="wa-hero" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      WhatsApp Us Now
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text reveal">
+    <p class="slabel">Our Story</p>
+    <h2 class="stitle"><span class="p">வள்ளி அம்பாள்</span><br><span class="g">Metal Crafts</span></h2>
+    <div class="dorn"><span></span><i>❧</i><span></span></div>
+    <p>Valliambal Metal Crafts brings you the finest handcrafted metal religious idols and artifacts from Tamil Nadu. Every piece is shaped with meticulous attention, honoring centuries-old traditions of South Indian metal craft.</p>
+    <p>Whether you seek a sacred idol for your home shrine, a meaningful gift, or a custom commission, our artisan Selvam and his team guide you with patience and expertise.</p>
+    <p>We offer full customisation — tell us your vision and we will bring it to life in bronze, brass, or copper.</p>
+  </div>
+  <div class="stats reveal">
+    <div class="sc"><span class="sn">5.0★</span><span class="sl">Google Rating</span></div>
+    <div class="sc"><span class="sn g">16+</span><span class="sl">Happy Reviews</span></div>
+    <div class="sc"><span class="sn g">100+</span><span class="sl">Designs Available</span></div>
+    <div class="sc"><span class="sn">✦</span><span class="sl">Custom Orders</span></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="reveal">
+    <p class="slabel">Our Collection</p>
+    <h2 class="stitle"><span class="p">Sacred</span> <span class="g">Metalwork</span></h2>
+    <div class="dorn"><span></span><i>❧</i><span></span></div>
+    <p style="color:var(--soft);font-size:1.1rem;max-width:520px;line-height:1.8;">A curated selection of devotional idols and decorative metal pieces, each crafted with traditional techniques. Replace the placeholders below with your own product photos.</p>
+  </div>
+  <div class="pgrid">
+    <div class="pc reveal">
+      <!-- To add a real photo: replace the div below with <img class="pimg" src="images/nataraja.jpg" alt="Nataraja"> -->
+      <div class="pph">🕉</div>
+      <div class="pi"><h3 class="pn">Nataraja Idol</h3><p class="pd">The cosmic dancer — stunning bronze Nataraja in classical Chola style, available in multiple sizes.</p><span class="ptag">Brass · Bronze</span></div>
+    </div>
+    <div class="pc reveal">
+      <div class="pph">🌸</div>
+      <div class="pi"><h3 class="pn">Lakshmi Statue</h3><p class="pd">Exquisitely detailed goddess of wealth with intricate floral motifs and hand-polished finish.</p><span class="ptag">Brass · Copper</span></div>
+    </div>
+    <div class="pc reveal">
+      <div class="pph">⚡</div>
+      <div class="pi"><h3 class="pn">Ganesha Idol</h3><p class="pd">The remover of obstacles — gleaming brass with traditional iconography and fine hand-crafted detail.</p><span class="ptag">Brass</span></div>
+    </div>
+    <div class="pc reveal">
+      <div class="pph">🪔</div>
+      <div class="pi"><h3 class="pn">Diyas &amp; Lamps</h3><p class="pd">Traditional oil lamps for puja rooms — standing, hanging, and peacock designs, ideal for gifting.</p><span class="ptag">Brass · Bronze</span></div>
+    </div>
+    <div class="pc reveal">
+      <div class="pph">🏛</div>
+      <div class="pi"><h3 class="pn">Murugan Idol &amp; Vel</h3><p class="pd">Lord Murugan statues and sacred vel spears, crafted with devotion for home shrines.</p><span class="ptag">Panchaloha · Brass</span></div>
+    </div>
+    <div class="pc reveal">
+      <div class="pph">✨</div>
+      <div class="pi"><h3 class="pn">Custom Commissions</h3><p class="pd">Have a specific deity or design in mind? We craft custom pieces to your exact requirements.</p><span class="ptag">Any Metal · Any Size</span></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:3rem;" class="reveal">
+    <a href="https://wa.me/917339639845?text=Hi%2C%20I%20would%20like%20to%20ask%20about%20a%20product%20at%20Valliambal%20Metal%20Crafts." class="wa-btn" target="_blank" rel="noopener">
+      <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Ask About a Product
+    </a>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="rh reveal">
+    <p class="slabel">What Customers Say</p>
+    <div class="bigs">5.0 ★</div>
+    <p class="bigs-sub">16 Verified Google Reviews</p>
+  </div>
+  <div class="rgrid">
+    <div class="rc reveal"><div class="stars">★★★★★</div><p class="rt">Got a beautiful item from here! They have a variety of beautifully crafted products and very good quality. Store owners were very kind and helpful in selecting the right piece.</p><span class="rname">Shruthi Ramesh</span></div>
+    <div class="rc reveal"><div class="stars">★★★★★</div><p class="rt">After searching high and low, I finally found this shop! I'm happy with the finishing and quality of the Nataraja idol. Selvam seems very professional and skilled in this field.</p><span class="rname">Vinmeenlilly R</span></div>
+    <div class="rc reveal"><div class="stars">★★★★★</div><p class="rt">The shop has a variety of designs and even offers customisations. Very patient in answering every question. Selvam helped me select a perfect statue for my mom.</p><span class="rname">Sheettal Ramu · Local Guide</span></div>
+    <div class="rc reveal"><div class="stars">★★★★★</div><p class="rt">Best in the business and very reasonable price for such quality products. Highly recommend to anyone looking for authentic metal crafts.</p><span class="rname">Selvam Siva · Local Guide</span></div>
+    <div class="rc reveal"><div class="stars">★★★★★</div><p class="rt">Amazing collection with a variety of designs. Good quality at a very reasonable price. Great items for gifting — highly recommended!</p><span class="rname">Verified Customer</span></div>
+    <div class="rc reveal"><div class="stars">★★★★★</div><p class="rt">Excellent craftsmanship and the owner is very knowledgeable. Every piece is made with care and devotion — you can feel the quality.</p><span class="rname">Verified Customer</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="slabel reveal">Get In Touch</p>
+  <h2 class="stitle reveal"><span class="p">Contact</span> <span class="g">Us Directly</span></h2>
+  <div class="dorn reveal" style="justify-content:center;"><span style="max-width:40px"></span><i>❧</i><span style="max-width:40px"></span></div>
+  <div class="cgrid">
+    <div class="cc reveal"><div class="ci">📍</div><h3>Address</h3><p>Ground Floor, NH44, 2/5<br>Bangalore Main Road<br>Mookondapalli, Hosur<br>Tamil Nadu – 635126</p></div>
+    <div class="cc reveal"><div class="ci">🕘</div><h3>Hours</h3><p>Every Day<br>9:00 AM – 9:00 PM</p></div>
+    <div class="cc reveal"><div class="ci">📞</div><h3>Phone / WhatsApp</h3><p>+91 733 963 9845</p></div>
+  </div>
+  <div class="reveal" style="margin-top:.5rem;">
+    <p style="font-size:1.1rem;color:var(--soft);margin-bottom:1.5rem;max-width:480px;margin-left:auto;margin-right:auto;">Tap below to open a direct WhatsApp chat for product enquiries, prices, or custom orders.</p>
+    <a href="https://wa.me/917339639845?text=Hi%2C%20I%20would%20like%20to%20enquire%20about%20your%20metal%20craft%20products%20at%20Valliambal%20Metal%20Crafts%2C%20Hosur." class="wa-btn" target="_blank" rel="noopener">
+      <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      WhatsApp Us · +91 733 963 9845
+    </a>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="map-s">
+  <div class="mw reveal">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d77.8200!3d12.7400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDQ0JzI0LjAiTiA3N8KwNDknMTIuMCJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" title="Valliambal Metal Crafts"></iframe>
+  </div>
+  <p class="mc">NH44 · Bangalore Main Road · Mookondapalli · Hosur · Tamil Nadu 635126</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fl">
+    <img src="logo.png" alt="Logo">
+    <div class="flt">
+      <span class="ft">வள்ளி அம்பாள்</span>
+      <span class="fe">Kumbakonam Valliambal Metal Crafts</span>
+    </div>
+  </div>
+  <div class="fn">Hosur, Tamil Nadu &nbsp;·&nbsp; +91 733 963 9845 &nbsp;·&nbsp; © 2025</div>
+</footer>
+
+<script>
+  function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+  document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>
