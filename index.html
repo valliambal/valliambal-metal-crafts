@@ -80,7 +80,7 @@
     .map-btn:hover{background:rgba(200,151,42,0.25);transform:translateY(-2px);}
     /* Hero photo grid */
     .hero-photos{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;opacity:0;animation:fu .9s .5s forwards;}
-    .hero-photo{aspect-ratio:4/3;border:1px solid rgba(200,151,42,0.35);overflow:hidden;position:relative;background:#0A1A10;}
+    .hero-photo{aspect-ratio:4/3;min-height:140px;border:1px solid rgba(200,151,42,0.35);overflow:hidden;position:relative;background:#0A1A10;}
     .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;z-index:2;}
     .hero-photo:hover img{transform:scale(1.05);}
     .hero-photo-placeholder{position:absolute;inset:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;background:linear-gradient(135deg,#0F2318,#1A3520,#0F2318);z-index:1;}
